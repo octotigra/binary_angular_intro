@@ -48,9 +48,9 @@
 
                 <ul class="list-group clearfix">
                     <li class="list-group-item" ng-repeat="person in filtered = (peopleList| filter:search)" >
-                        <img src="{{person.avatar}}" alt="Customer avatar">
+                        <img ng-src="{{person.avatar}}" alt="Customer avatar">
                         <span class="glyphicon glyphicon-remove" ng-click="remove(person)"></span>
-                        <h3>Name: {{person.name}}</h3>
+                        <h3>Name: {{person.name | toUpperCase}}</h3>
                         <h3>Age: {{person.age}}</h3>
                         <h3>City: {{person.city}} </h3>
                     </li>

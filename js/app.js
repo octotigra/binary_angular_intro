@@ -39,57 +39,65 @@ angular.module('app', [])
 
 })
 
-.controller('peopleCtrl', function($scope) {
+    .controller('peopleCtrl', function($scope) {
 
-        $scope.peopleList = [
-            {name: "John", city: "NY", age: 20, avatar: 
-            'http://pickaface.net/avatar/nberthiaume8655a123e70cd62.png'},
-            {name: "Lars", city: "Oslo", age: 23, avatar: 
-            'http://pickaface.net/avatar/stevendee88538f3fa8b5ac3.png'},
-            {name: "Pier", city: "Paris", age: 18, avatar: 
-            'http://pickaface.net/avatar/.23253354ff7c6c59.png'},   
-        ];
+            $scope.peopleList = [
+                {name: "John", city: "NY", age: 20, avatar: 
+                'http://pickaface.net/avatar/nberthiaume8655a123e70cd62.png'},
+                {name: "Lars", city: "Oslo", age: 23, avatar: 
+                'http://pickaface.net/avatar/stevendee88538f3fa8b5ac3.png'},
+                {name: "Pier", city: "Paris", age: 18, avatar: 
+                'http://pickaface.net/avatar/.23253354ff7c6c59.png'},   
+            ];
 
-        $scope.showList = true;    
+            $scope.showList = true;    
 
-        $scope.toggleView = function() {
-            $scope.showList = $scope.showList ? false : true
+            $scope.toggleView = function() {
+                $scope.showList = $scope.showList ? false : true
+            }
+
+            $scope.addPerson =  function() {
+                var personName = $scope.formCustomerName;
+                var personAge =  $scope.formCustomerAge;
+                var personCity =  $scope.formCustomerCity;
+                var avatarURL =  $scope.formCustomerAvatar;
+
+
+                    //smth is empty
+                    if (personName == undefined || personAge == undefined
+                        || personCity == undefined || avatarURL == undefined) {
+                        return;
+                    }
+
+                    //contains only space chars
+                    if (personName.charAt(0) === "" || personAge.charAt(0) === ""
+                        || personCity.charAt(0) === "" || avatarURL.charAt(0) === "") {
+                        return;
+                    }
+
+                    //can't parse age
+                    personAge = parseInt(personAge);
+                    if (personAge < 0 || isNaN(personAge) === true) {
+                        return;
+                    }
+
+                    $scope.peopleList.push( {name: personName, age: personAge, 
+                        city: personCity, avatar: avatarURL} );
+                }
+
+                $scope.remove = function(item) {
+                    var index = $scope.peopleList.indexOf(item);
+                    $scope.peopleList.splice(index, 1);
+                }
+
+    })
+
+    .filter("toUpperCase", function(){
+        return function(item) {
+            return "User " + item.toUpperCase();
         }
 
-        $scope.addPerson =  function() {
-            var personName = $scope.formCustomerName;
-            var personAge =  $scope.formCustomerAge;
-            var personCity =  $scope.formCustomerCity;
-            var avatarURL =  $scope.formCustomerAvatar;
-
-
-                //smth is empty
-                if (personName == undefined || personAge == undefined
-                    || personCity == undefined || avatarURL == undefined) {
-                    return;
-                }
-
-                //contains only space chars
-                if (personName.charAt(0) === "" || personAge.charAt(0) === ""
-                    || personCity.charAt(0) === "" || avatarURL.charAt(0) === "") {
-                    return;
-                }
-
-                //can't parse age
-                personAge = parseInt(personAge);
-                if (personAge < 0 || isNaN(personAge) === true) {
-                    return;
-                }
-
-                $scope.peopleList.push( {name: personName, age: personAge, 
-                    city: personCity, avatar: avatarURL} );
-            }
-
-            $scope.remove = function(item) {
-                var index = $scope.peopleList.indexOf(item);
-                $scope.peopleList.splice(index, 1);
-            }
-})
+    })
 
 
 
