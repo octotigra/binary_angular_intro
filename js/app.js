@@ -84,7 +84,12 @@ angular.module('app', [])
                 $scope.peopleList.push( {name: personName, age: personAge, 
                     city: personCity, avatar: avatarURL} );
             }
-}) 
+
+            $scope.remove = function(item) {
+                var index = $scope.peopleList.indexOf(item);
+                $scope.peopleList.splice(index, 1);
+            }
+})
 
 
 
