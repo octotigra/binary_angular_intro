@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular workout</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+</head>
+<body>
+    <div class="container"> 
+        <div ng-controller="goodsCtrl">
+            <h2>Goods list ( {{itemList.length}} )</h2>
+            <div class="goods-container" ng-show="showList">
+                <form class="filter">
+                    <label for="search">Search: </label>
+                    <input id="search" type="text" placeholder="search goods..." ng-model="text">
+                </form>
+                <ul>
+                    <li ng-repeat="item in itemList | filter:text">
+                        <span>{{item.name}}</span>
+                        <span>{{item.price}}</span>
+                    </li>
+                </ul>
+
+                <form class="new-item">
+                    <label for="item-name">New item:</label>
+                    <input type="text" id="item-name" ng-model="formItemEntry">
+
+                    <label for="item-price">Price:</label>
+                    <input type="text" id="item-price" ng-model="formPrice">
+                    
+                    <button class="btn" ng-click="addItem()">+Add</button>
+                </form> <!-- new_item -->
+            </div> <!-- goods-container -->
+            <button class="btn" ng-click="toggleView()">Toggle List</button>
+        </div><!-- controller goodsCtrl-->
+
+
+        <div class="customers" ng-controller="peopleCtrl">
+            <h2>Customers list ( {{peopleList.length}} )</h2>
+            
+            <form class="filter-name">
+                <label for="search">Search: </label>
+                <input id="search" type="text" placeholder="search by name" ng-model="text">
+             </form>
+            
+            <ul class="list-group clearfix">
+                <li class="list-group-item" ng-repeat="person in peopleList| filter:text" >
+                    <img src="{{person.avatar}}" alt="Customer avatar">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <h3>Name: {{person.name}}</h3>
+                    <h3>Age: {{person.age}}</h3>
+                    <h3>City: {{person.city}} </h3>
+                </li>
+            </ul>
+
+            <form class="new-customer">
+                    <label for="customer-name">Name:</label>
+                    <input type="text" id="customer-name" ng-model="formCustomerName">
+
+                    <label for="customer-age">Age</label>
+                    <input type="text" id="customer-age" ng-model="formCustomerAge">
+
+                    <label for="customer-city">City:</label>
+                    <input type="text" id="customer-city" ng-model="formCustomerCity">
+                    
+                    <label for="customer-avatar">Avatar Link:</label>
+                    <input type="text" id="customer-avatar" ng-model="formCustomerAvatar">
+                    
+                    <button class="btn" ng-click="addItem()">+Add</button>
+                </form> <!-- new_item -->
+            </div> <!-- goods-container -->
+            <button class="btn" ng-click="toggleView()">Toggle List</button>
+        </div><!-- controller peopleCtrl-->
+
+    </div>
+
+    <script type="text/javascript" src="js/app.js"></script>
+
+</body>
+</html>

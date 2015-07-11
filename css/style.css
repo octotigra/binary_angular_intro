@@ -1,0 +1,45 @@
+.clearfix:after {
+	content: " ";
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
+}
+.container {
+	padding-bottom: 30px;
+	min-width: 1020px;
+}
+
+.filter,
+.filter-name {
+	padding: 20px;
+}
+.new-item {
+	padding-bottom: 20px;
+}
+
+.customers {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+
+.customers li {
+	width: 33.33%;
+	float: left;
+	min-width: 250px;
+}
+
+.customers li span {
+	font-size: 24px;
+	padding-left: 30%;
+	cursor: pointer;
+}
+
+.customers img{
+	height: 150px;
+	width: 150px;
+}
+
+.new-customer {
+	padding-top: 50px;
+}
