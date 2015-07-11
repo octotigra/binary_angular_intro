@@ -11,14 +11,14 @@
 <body>
     <div class="container"> 
         <div ng-controller="goodsCtrl">
-            <h2>Goods list ( {{itemList.length}} )</h2>
+            <h2>Goods list ( {{filtered.length}} )</h2>
             <div class="goods-container" ng-show="showList">
                 <form class="filter">
                     <label for="search">Search: </label>
                     <input id="search" type="text" placeholder="search goods..." ng-model="text">
                 </form>
                 <ul>
-                    <li ng-repeat="item in itemList | filter:text">
+                    <li ng-repeat="item in filtered = (itemList | filter:text)">
                         <span>{{item.name}}</span>
                         <span>{{item.price}}</span>
                     </li>
@@ -39,24 +39,24 @@
 
 
         <div class="customers" ng-controller="peopleCtrl">
-            <h2>Customers list ( {{peopleList.length}} )</h2>
-            
-            <form class="filter-name">
-                <label for="search">Search: </label>
-                <input id="search" type="text" placeholder="search by name" ng-model="text">
-             </form>
-            
-            <ul class="list-group clearfix">
-                <li class="list-group-item" ng-repeat="person in peopleList| filter:text" >
-                    <img src="{{person.avatar}}" alt="Customer avatar">
-                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    <h3>Name: {{person.name}}</h3>
-                    <h3>Age: {{person.age}}</h3>
-                    <h3>City: {{person.city}} </h3>
-                </li>
-            </ul>
+            <h2>Customers list ( {{filtered.length}} )</h2>
+            <div class="customers-container"  ng-show="showList">
+                <form class="filter-name">
+                    <label for="search">Search: </label>
+                    <input id="search" type="text" placeholder="search by name" ng-model="search.name">
+                </form>
 
-            <form class="new-customer">
+                <ul class="list-group clearfix">
+                    <li class="list-group-item" ng-repeat="person in filtered = (peopleList| filter:search)" >
+                        <img src="{{person.avatar}}" alt="Customer avatar">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        <h3>Name: {{person.name}}</h3>
+                        <h3>Age: {{person.age}}</h3>
+                        <h3>City: {{person.city}} </h3>
+                    </li>
+                </ul>
+
+                <form class="new-customer">
                     <label for="customer-name">Name:</label>
                     <input type="text" id="customer-name" ng-model="formCustomerName">
 
@@ -69,7 +69,7 @@
                     <label for="customer-avatar">Avatar Link:</label>
                     <input type="text" id="customer-avatar" ng-model="formCustomerAvatar">
                     
-                    <button class="btn" ng-click="addItem()">+Add</button>
+                    <button class="btn" ng-click="addPerson()">+Add</button>
                 </form> <!-- new_item -->
             </div> <!-- goods-container -->
             <button class="btn" ng-click="toggleView()">Toggle List</button>

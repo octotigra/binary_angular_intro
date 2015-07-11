@@ -50,6 +50,40 @@ angular.module('app', [])
             'http://pickaface.net/avatar/.23253354ff7c6c59.png'},   
         ];
 
+        $scope.showList = true;    
+
+        $scope.toggleView = function() {
+            $scope.showList = $scope.showList ? false : true
+        }
+
+        $scope.addPerson =  function() {
+            var personName = $scope.formCustomerName;
+            var personAge =  $scope.formCustomerAge;
+            var personCity =  $scope.formCustomerCity;
+            var avatarURL =  $scope.formCustomerAvatar;
+
+
+                //smth is empty
+                if (personName == undefined || personAge == undefined
+                    || personCity == undefined || avatarURL == undefined) {
+                    return;
+                }
+
+                //contains only space chars
+                if (personName.charAt(0) === "" || personAge.charAt(0) === ""
+                    || personCity.charAt(0) === "" || avatarURL.charAt(0) === "") {
+                    return;
+                }
+
+                //can't parse age
+                personAge = parseInt(personAge);
+                if (personAge < 0 || isNaN(personAge) === true) {
+                    return;
+                }
+
+                $scope.peopleList.push( {name: personName, age: personAge, 
+                    city: personCity, avatar: avatarURL} );
+            }
 }) 
 
 
