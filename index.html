@@ -18,7 +18,7 @@
                     <input id="search" type="text" placeholder="search goods..." ng-model="text">
                 </form>
                 <ul>
-                    <li ng-repeat="item in filtered = (itemList | filter:text)">
+                    <li ng-repeat="item in filtered = (itemList | filter:text) track by $index">
                         <span>{{item.name}}</span>
                         <span>{{item.price}}</span>
                     </li>
@@ -47,7 +47,7 @@
                 </form>
 
                 <ul class="list-group clearfix">
-                    <li class="list-group-item" ng-repeat="person in filtered = (peopleList| filter:search)" >
+                    <li class="list-group-item" ng-repeat="person in filtered = (peopleList| filter:search) track by $index" >
                         <img ng-src="{{person.avatar}}" alt="Customer avatar">
                         <span class="glyphicon glyphicon-remove" ng-click="remove(person)"></span>
                         <h3>Name: {{person.name | toUpperCase}}</h3>
